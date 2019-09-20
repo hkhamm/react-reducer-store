@@ -6,11 +6,6 @@ const useStyles = makeStyles({
     app: {
         textAlign: "center"
     },
-    appLogo: {
-        animation: "$appLogoSpin infinite 20s linear",
-        height: "40vmin",
-        pointerEvents: "none"
-    },
     appHeader: {
         backgroundColor: "#282c34",
         minHeight: "100vh",
@@ -20,17 +15,6 @@ const useStyles = makeStyles({
         justifyContent: "center",
         fontSize: "calc(10px + 2vmin)",
         color: "white"
-    },
-    appLink: {
-        color: "#61dafb"
-    },
-    "@keyframes appLogoSpin": {
-        from: {
-            transform: "rotate(0deg)"
-        },
-        to: {
-            transform: "rotate(360deg)"
-        }
     }
 })
 
