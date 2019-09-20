@@ -43,7 +43,7 @@ function reducer(store: Store, action: Action) {
             return {
                 ...store,
                 storeB: {
-                    ...store.storeA,
+                    ...store.storeB,
                     b: action.value
                 },
                 storeC: {
