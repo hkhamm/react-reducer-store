@@ -13,8 +13,8 @@ export interface Store {
 }
 
 export interface Action {
-    type: string
-    value: any
+    type: "a" | "b"
+    value: number
 }
 
 export const StoreContext = createContext<Store>({} as Store)
