@@ -1,55 +1,35 @@
 import React, { createContext, Dispatch, FC, useContext, useReducer } from "react"
 
 export interface Store {
-    storeA: {
-        a: number
-    }
-    storeB: {
-        b: number
-    }
-    storeC: {
-        c: number
-    }
+    foo: string
+    bar: string
+    fooBar: string
 }
 
 export interface Action {
-    type: "a" | "b"
-    value: number
+    type: "foo" | "bar"
+    value: string
 }
 
 export const StoreContext = createContext<Store>({} as Store)
-
 export const useStore = () => useContext<Store>(StoreContext)
 
 export const DispatchContext = createContext<Dispatch<Action>>((action: Action) => {})
-
 export const useDispatch = () => useContext<Dispatch<Action>>(DispatchContext)
 
 function reducer(store: Store, action: Action) {
     switch (action.type) {
-        case "a":
+        case "foo":
             return {
                 ...store,
-                storeA: {
-                    ...store.storeA,
-                    a: action.value
-                },
-                storeC: {
-                    ...store.storeC,
-                    c: action.value + store.storeB.b
-                }
+                foo: action.value,
+                fooBar: `${action.value} ${store.bar}`
             }
-        case "b":
+        case "bar":
             return {
                 ...store,
-                storeB: {
-                    ...store.storeB,
-                    b: action.value
-                },
-                storeC: {
-                    ...store.storeC,
-                    c: store.storeA.a + action.value
-                }
+                bar: action.value,
+                fooBar: `${store.foo} ${action.value}`
             }
         default:
             throw new Error()
@@ -58,15 +38,9 @@ function reducer(store: Store, action: Action) {
 
 const StoreProvider: FC = ({ children }) => {
     const [store, dispatch] = useReducer(reducer, {
-        storeA: {
-            a: 0
-        },
-        storeB: {
-            b: 0
-        },
-        storeC: {
-            c: 0
-        }
+        foo: "old foo",
+        bar: "old bar",
+        fooBar: "old foo old bar"
     })
 
     return (

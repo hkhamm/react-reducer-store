@@ -1,6 +1,8 @@
 import React, { FC } from "react"
 import { makeStyles } from "@material-ui/core"
-import { useStore, useDispatch } from "./StoreProvider"
+import Foo from "./Foo"
+import Bar from "./Bar"
+import FooBar from "./FooBar"
 
 const useStyles = makeStyles({
     app: {
@@ -20,23 +22,13 @@ const useStyles = makeStyles({
 
 const App: FC = () => {
     const classes = useStyles()
-    const { storeA, storeC, storeB } = useStore()
-    const dispatch = useDispatch()
-
-    const addOneToA = () => dispatch({ type: "a", value: storeA.a + 1 })
-    const addOneToB = () => dispatch({ type: "b", value: storeB.b + 1 })
-    const clear = () => {
-        dispatch({ type: "a", value: 0 })
-        dispatch({ type: "b", value: 0 })
-    }
 
     return (
         <div className={classes.app}>
             <header className={classes.appHeader}>
-                <p>{`A + B = C: ${storeA.a} + ${storeB.b} = ${storeC.c}`}</p>
-                <button onClick={addOneToA}>Add 1 to A</button>
-                <button onClick={addOneToB}>Add 1 to B</button>
-                <button onClick={clear}>Clear</button>
+                <Foo />
+                <Bar />
+                <FooBar />
             </header>
         </div>
     )
